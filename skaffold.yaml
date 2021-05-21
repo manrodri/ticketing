@@ -1,0 +1,20 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+build:
+#  local:
+#    push: false
+  googleCloudBuild:
+    projectId: core-field-307609
+  artifacts:
+    - image:  us.gcr.io/core-field-307609/auth
+      context: auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
