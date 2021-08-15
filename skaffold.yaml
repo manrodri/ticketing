@@ -5,12 +5,12 @@ deploy:
     manifests:
       - ./infra/k8s/*
 build:
-#  local:
-#    push: false
-  googleCloudBuild:
-    projectId: core-field-307609
+  local:
+    push: false
+#  googleCloudBuild:
+#    projectId: extended-pagoda-321407
   artifacts:
-    - image:  us.gcr.io/core-field-307609/auth
+    - image:  manrodri/auth
       context: auth
       docker:
         dockerfile: Dockerfile

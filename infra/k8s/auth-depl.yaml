@@ -14,7 +14,14 @@ spec:
     spec:
       containers:
         - name: auth
-          image: us.gcr.io/core-field-307609/auth
+          image: manrodri/auth
+          env:
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+
 ---
 apiVersion: v1
 kind: Service
@@ -28,3 +35,4 @@ spec:
       protocol: TCP
       port: 3000
       targetPort: 3000
+
