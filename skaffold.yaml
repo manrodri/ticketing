@@ -8,7 +8,7 @@ build:
   local:
     push: false
   artifacts:
-    - image: cygnetops/auth
+    - image: manrodri/auth
       context: auth
       docker:
         dockerfile: Dockerfile
@@ -16,7 +16,15 @@ build:
         manual:
           - src: 'src/**/*.ts'
             dest: .
-    - image: cygnetops/ticketing-client
+    - image: manrodri/tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: 'src/**/*.ts'
+            dest: .
+    - image: manrodri/client
       context: client
       docker:
         dockerfile: Dockerfile
