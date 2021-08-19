@@ -7,14 +7,20 @@ deploy:
 build:
   local:
     push: false
-#  googleCloudBuild:
-#    projectId: extended-pagoda-321407
   artifacts:
-    - image:  manrodri/auth
+    - image: cygnetops/auth
       context: auth
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
           - src: 'src/**/*.ts'
+            dest: .
+    - image: cygnetops/ticketing-client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '**/*.js'
             dest: .
