@@ -5,11 +5,11 @@ import { requireAuth, validateRequest } from '@manrodri-tickets/common';
 const router = express.Router();
 
 router.get('/api/tickets/hello', (req: Request, res: Response)=> {
-    res.status(200).send("hello world")
+    res.status(201).send("hello world")
 })
 
 router.post(
-  '/api/tickets/new',
+  '/api/tickets',
   requireAuth,
   [
     body('title').not().isEmpty().withMessage('Title is required'),
@@ -19,7 +19,7 @@ router.post(
   ],
   validateRequest,
   (req: Request, res: Response) => {
-    res.sendStatus(201);
+    res.status(201).send("Ticket created");
   }
 );
 
